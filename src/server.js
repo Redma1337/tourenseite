@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser'),
@@ -44,7 +46,8 @@ app.post("/tour", (req, res) => {
         }
 
         //generate a qr code for each dataset which contains the uuid
-        qrcode.toDataURL(id, (err, url) => {
+        let dest = process.env.NODE_ENV === 'production' ? process.env.HOST : process.env.LOCALHOST_DEST;
+        qrcode.toDataURL(`${dest}/${id}`, (err, url) => {
             if (err) res.status(400).send({ error: "Error while trying to create Qr Code" });
 
             //append it to the database
