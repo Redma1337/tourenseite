@@ -10,9 +10,16 @@
             <img src="<%=src.qrcode%>" alt="qr code image">
         </div>
         <ul>
-            <% for (const [key, value] of Object.entries(src.data)) {%>
+            <%
+            let i = -2;
+            for (const [key, value] of Object.entries(src.data)) {
+                i++;
+            %>
                 <li><%=key%>%>: <%=value%></li>
-            <% } %>
+                <% if (i % 5 == 0) {%>
+                    <hr>
+                <%}%>
+            <%}%>
         </ul>
     </body>
 </html>

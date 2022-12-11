@@ -1,17 +1,50 @@
 <html lang="de">
-  <head>
-    <meta charset="utf-8">
-    <title>Liefertouren</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
+<head>
+  <title>Liefertouren</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div class="content-container">
+    <form id="content-form" method="POST" action="/tour">
+      <h1>Tourenübersicht </h1>
+      <label for="tour">Tour:</label>
+      <input type="text" id="tour" name="tour" required>
 
-  <body>
-    <div class="content-container">
-      <form id="content-form" method="POST" action="/tour">
-        <input type="text" id="destination" name="destination" required>
-        <input type="text" id="courier" name="courier" required>
-        <input type="submit" value="Create QR Code">
-      </form>
-    </div>
-  </body>
+      <label for="frachführer">Frachtführer:</label>
+      <input type="text" id="frachführer" name="frachführer" required>
+
+      <% for (let i = 1; i < 4; i++) { %>
+        <table>
+          <tr>
+            <th>Apotheke</th>
+            <th>Ort</th>
+            <th>Ankunft</th>
+            <th>BtM</th>
+            <th>Beipack</th>
+          </tr>
+          <tr>
+            <td>
+              <textarea id="Apotheke <%=i%>" name="Apotheke <%=i%>" rows="3" cols="17"></textarea>
+            </td>
+            <td>
+              <textarea id="Ort <%=i%>" name="Ort <%=i%>" rows="3" cols="17"></textarea>
+            </td>
+            <td>
+              <input type="text" id="Ankunft <%=i%>" name="Ankunft <%=i%>" required>
+            </td>
+            <td>
+              <input type="text" id="BtM <%=i%>" name="BtM <%=i%>" required>
+            </td>
+            <td>
+              <input type="text" id="Beipack <%=i%>" name="Beipack <%=i%>" required>
+            </td>
+          </tr>
+        </table>
+      <%}%>
+
+      <input type="submit" value="QR-Code für Tour erstellen">
+    </form>
+  </div>
+</body>
 </html>
